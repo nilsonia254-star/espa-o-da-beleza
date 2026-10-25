@@ -51,7 +51,7 @@
       padding: 15px;
     }
 
-    /* Botão Discreto de Acesso Admin no Topo (Apenas para a Dona) */
+    /* Botão Discreto de Acesso Admin no Topo */
     .admin-access-trigger {
       position: absolute;
       top: 15px;
@@ -163,7 +163,7 @@
       margin-top: 4px;
     }
 
-    /* Banner da Validade do Cartão Completo */
+    /* Banner da Validade */
     .expiration-banner {
       background: rgba(212, 175, 55, 0.08);
       border: 1px solid rgba(212, 175, 55, 0.25);
@@ -189,7 +189,7 @@
       color: var(--accent-red);
     }
 
-    /* Grid de Selos dos Pontos */
+    /* Grid de Selos */
     .stamps-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -231,7 +231,6 @@
       display: none;
     }
 
-    /* Detalhes & Regras */
     .card-details {
       background: rgba(0,0,0,0.2);
       border-radius: 12px;
@@ -248,11 +247,6 @@
       gap: 8px;
     }
 
-    .card-details p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Botões WhatsApp */
     .action-btn {
       width: 100%;
       padding: 14px;
@@ -275,15 +269,8 @@
       filter: brightness(1.1);
     }
 
-    .btn-whatsapp {
-      background-color: var(--accent-green);
-      color: #fff;
-    }
-
-    .btn-indicate {
-      background: var(--gold-gradient);
-      color: #000;
-    }
+    .btn-whatsapp { background-color: var(--accent-green); color: #fff; }
+    .btn-indicate { background: var(--gold-gradient); color: #000; }
 
     .lost-number-note {
       text-align: center;
@@ -292,7 +279,7 @@
       margin-top: 15px;
     }
 
-    /* Estilos do Painel Admin (Dashboard) */
+    /* Painel Admin */
     .admin-panel {
       display: none;
       background: var(--card-bg);
@@ -373,21 +360,11 @@
     }
 
     @media (min-width: 768px) {
-      .admin-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .admin-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
 
     .form-control {
       width: 100%;
@@ -399,10 +376,7 @@
       font-size: 0.9rem;
     }
 
-    .form-control:focus {
-      outline: none;
-      border-color: var(--gold-primary);
-    }
+    .form-control:focus { outline: none; border-color: var(--gold-primary); }
 
     .btn-admin {
       padding: 12px;
@@ -418,9 +392,7 @@
       transition: filter 0.2s;
     }
 
-    .btn-admin:hover {
-      filter: brightness(1.15);
-    }
+    .btn-admin:hover { filter: brightness(1.15); }
 
     .btn-primary-admin { background-color: var(--accent-blue); color: #fff; }
     .btn-success-admin { background-color: var(--accent-green); color: #fff; }
@@ -442,70 +414,39 @@
       border: 1px solid var(--card-border);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.85rem;
-    }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+    th, td { padding: 12px 15px; border-bottom: 1px solid var(--card-border); }
+    th { background-color: rgba(255, 255, 255, 0.03); color: var(--gold-primary); font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
 
-    th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    th {
-      background-color: rgba(255, 255, 255, 0.03);
-      color: var(--gold-primary);
-      font-weight: 600;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Modal de Senha */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 20px;
+      display: none; align-items: center; justify-content: center;
+      z-index: 1000; padding: 20px;
     }
 
     .modal-box {
       background: var(--card-bg);
       border: 1px solid var(--gold-primary);
       border-radius: 16px;
-      padding: 25px;
-      width: 100%;
-      max-width: 360px;
-      text-align: center;
+      padding: 25px; width: 100%; max-width: 360px; text-align: center;
     }
 
-    .modal-box h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold-primary);
-      margin-bottom: 15px;
-    }
+    .modal-box h3 { font-family: 'Playfair Display', serif; color: var(--gold-primary); margin-bottom: 15px; }
   </style>
 </head>
 <body>
 
-  <!-- Botão Discreto de Acesso Restrito no Topo (Para a Dona do Salão) -->
+  <!-- Botão Discreto de Acesso Admin -->
   <button class="admin-access-trigger" onclick="requestAdminAccess()" title="Área Restrita da Dona">
     <i class="fa-solid fa-lock"></i> Admin
   </button>
 
   <div class="container" id="main-container">
     
-    <!-- Cartão Fidelidade (Visão do Cliente - Limpo e Bonito) -->
+    <!-- Cartão Fidelidade (Visão do Cliente) -->
     <div class="loyalty-card" id="client-card-view">
       <div class="header-logo">
         <h1 ondblclick="requestAdminAccess()" title="Duplo clique para abrir painel">Espaço da Beleza</h1>
@@ -520,16 +461,12 @@
         <div class="client-id-badge" id="display-client-id">ID: EB-1001</div>
       </div>
 
-      <!-- Banner Informativo de Expiração do Cartão Completo -->
       <div class="expiration-banner" id="display-expiration-banner">
         <i class="fa-solid fa-clock" style="color: var(--gold-primary); font-size: 1.2rem;"></i>
         <span id="display-expiration-text">Você tem 60 dias para completar o cartão a partir do 1º ponto.</span>
       </div>
 
-      <!-- Selos dos Pontos (1 a 10) -->
-      <div class="stamps-grid" id="stamps-container">
-        <!-- Gerado via JavaScript -->
-      </div>
+      <div class="stamps-grid" id="stamps-container"></div>
 
       <div class="card-details">
         <p><i class="fa-solid fa-location-dot" style="color: var(--gold-primary);"></i> Av. Sapopemba, 14.355 - São Mateus - SP</p>
@@ -551,7 +488,7 @@
       </div>
     </div>
 
-    <!-- Painel Administrativo Completo com Dashboard -->
+    <!-- Painel Administrativo -->
     <div class="admin-panel" id="admin-panel-view">
       <div class="admin-header">
         <div>
@@ -568,7 +505,6 @@
         </div>
       </div>
 
-      <!-- Cards de Métricas Principais (KPIs) -->
       <div class="kpi-grid">
         <div class="kpi-card">
           <div class="kpi-title">Total de Clientes</div>
@@ -584,7 +520,6 @@
         </div>
       </div>
 
-      <!-- Gráfico do Dashboard -->
       <div class="dashboard-charts">
         <div class="chart-container">
           <h3><i class="fa-solid fa-chart-line"></i> Fluxo de Atendimentos</h3>
@@ -592,9 +527,7 @@
         </div>
       </div>
 
-      <!-- Formulários e Ações do Admin -->
       <div class="admin-grid">
-        <!-- Cadastrar ou Selecionar Cliente -->
         <div>
           <h3 style="color: var(--gold-primary); font-size: 1rem; margin-bottom: 15px;">Gerenciar Cliente</h3>
           
@@ -606,7 +539,7 @@
           </div>
 
           <div class="form-group">
-            <label>ID do Cliente (Automático / Busca):</label>
+            <label>ID do Cliente:</label>
             <input type="text" class="form-control" id="input-client-id" placeholder="Ex: EB-1001" readonly>
           </div>
 
@@ -616,21 +549,19 @@
           </div>
 
           <div class="form-group">
-            <label>WhatsApp com DDD (Ex: 11987654321):</label>
+            <label>WhatsApp com DDD:</label>
             <input type="text" class="form-control" id="input-client-phone" placeholder="119...">
           </div>
 
           <div class="action-buttons-group">
             <button class="btn-admin btn-success-admin" onclick="saveClient()"><i class="fa-solid fa-floppy-disk"></i> Salvar / Atualizar</button>
-            <button class="btn-admin btn-danger-admin" onclick="deleteClient()"><i class="fa-solid fa-trash"></i> Eliminar Cliente</button>
+            <button class="btn-admin btn-danger-admin" onclick="deleteClient()"><i class="fa-solid fa-trash"></i> Eliminar</button>
           </div>
         </div>
 
-        <!-- Lançamento de Pontos & Controle de Validade do Cartão Completo -->
         <div>
-          <h3 style="color: var(--gold-primary); font-size: 1rem; margin-bottom: 15px;">Lançar Pontos & Validade do Cartão</h3>
+          <h3 style="color: var(--gold-primary); font-size: 1rem; margin-bottom: 15px;">Lançar Pontos & Validade</h3>
           
-          <!-- Lançamento Rápido de Pontos -->
           <div class="form-group">
             <label>Adicionar Pontos:</label>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
@@ -640,45 +571,36 @@
             </div>
           </div>
 
-          <!-- Controle Dinâmico da Validade do Cartão Completo -->
           <div class="form-group" style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; border: 1px solid var(--card-border); margin-top: 15px;">
-            <label><i class="fa-solid fa-calendar-days" style="color: var(--gold-primary);"></i> Ajustar Dias de Validade do Cartão:</label>
+            <label><i class="fa-solid fa-calendar-days" style="color: var(--gold-primary);"></i> Ajustar Dias de Validade:</label>
             
             <div style="display: flex; gap: 8px; margin-bottom: 10px;">
-              <button class="btn-admin btn-primary-admin" style="flex: 1;" onclick="adjustExpiryDays(10)">
-                <i class="fa-solid fa-plus"></i> +10 Dias
-              </button>
-              <button class="btn-admin btn-danger-admin" style="flex: 1;" onclick="adjustExpiryDays(-10)">
-                <i class="fa-solid fa-minus"></i> -10 Dias
-              </button>
+              <button class="btn-admin btn-primary-admin" style="flex: 1;" onclick="adjustExpiryDays(10)"><i class="fa-solid fa-plus"></i> +10 Dias</button>
+              <button class="btn-admin btn-danger-admin" style="flex: 1;" onclick="adjustExpiryDays(-10)"><i class="fa-solid fa-minus"></i> -10 Dias</button>
             </div>
 
             <div style="display: flex; gap: 8px;">
               <input type="number" class="form-control" id="input-expiry-days" value="60" min="1" max="365" style="text-align: center;">
-              <button class="btn-admin btn-gold-admin" style="white-space: nowrap;" onclick="setCustomExpiryDays()">Fixar Dias</button>
+              <button class="btn-admin btn-gold-admin" style="white-space: nowrap;" onclick="setCustomExpiryDays()">Fixar</button>
             </div>
-            <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; display: block;">
-              Prazo padrão: 60 dias para completar o cartão. O prazo começa no 1º ponto acumulado.
-            </span>
           </div>
 
           <div class="form-group" style="margin-top: 15px;">
             <label style="color: var(--accent-red);">Correção de Pontos:</label>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <button class="btn-admin btn-danger-admin" onclick="removePoints(1)"><i class="fa-solid fa-minus"></i> -1 Ponto</button>
-              <button class="btn-admin btn-danger-admin" onclick="resetPoints()"><i class="fa-solid fa-rotate-left"></i> Zerar Cartão</button>
+              <button class="btn-admin btn-danger-admin" onclick="resetPoints()"><i class="fa-solid fa-rotate-left"></i> Zerar</button>
             </div>
           </div>
 
           <div style="margin-top: 15px;">
             <button class="btn-admin btn-primary-admin" style="width: 100%;" onclick="sendCardWhatsApp()">
-              <i class="fa-brands fa-whatsapp"></i> Enviar Cartão para WhatsApp da Cliente
+              <i class="fa-brands fa-whatsapp"></i> Enviar Cartão para WhatsApp
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Tabela Resumo de Clientes -->
       <h3 style="color: var(--gold-primary); font-size: 1rem; margin-top: 30px; margin-bottom: 10px;">Lista de Clientes Cadastrados</h3>
       <div class="table-responsive">
         <table>
@@ -688,14 +610,12 @@
               <th>Nome</th>
               <th>WhatsApp</th>
               <th>Pontos</th>
-              <th>Validade (Dias)</th>
-              <th>Cartão Expira Em</th>
+              <th>Validade</th>
+              <th>Expira Em</th>
               <th>Ação</th>
             </tr>
           </thead>
-          <tbody id="clients-table-body">
-            <!-- Gerado via JavaScript -->
-          </tbody>
+          <tbody id="clients-table-body"></tbody>
         </table>
       </div>
 
@@ -703,7 +623,7 @@
 
   </div>
 
-  <!-- Modal de Senha do Admin -->
+  <!-- Modal de Senha -->
   <div class="modal-overlay" id="password-modal">
     <div class="modal-box">
       <h3>Acesso Restrito</h3>
@@ -717,33 +637,55 @@
   </div>
 
   <script>
-    // --- ESTADO DA APLICAÇÃO ---
     const ADMIN_PASSWORD = '12345';
     let clientsData = JSON.parse(localStorage.getItem('eb_clients_data')) || [];
     let selectedClientId = null;
     let servicesChartInstance = null;
 
     window.onload = function() {
+      // Se não houver clientes criados, cria uma padrão para teste imediato
+      if (clientsData.length === 0) {
+        clientsData.push({
+          id: 'EB-1001',
+          name: 'Maria Silva',
+          phone: '11999999999',
+          points: 0,
+          custom_expiry_days: 60,
+          cycle_start_date: null,
+          card_expiry_date: null,
+          created_at: new Date().toISOString()
+        });
+        persistData();
+      }
+
       checkExpiredPoints();
-      renderStamps(0);
       updateClientsDropdown();
       updateKPIs();
       initChart();
-      
+
+      // Verifica se veio um ID específico pela URL (ex: ?id=EB-1001)
       const urlParams = new URLSearchParams(window.location.search);
       const clientIdParam = urlParams.get('id');
+      
+      let activeClient = null;
       if (clientIdParam) {
-        const found = clientsData.find(c => c.id === clientIdParam);
-        if (found) {
-          loadClientToCard(found);
-        }
+        activeClient = clientsData.find(c => c.id === clientIdParam);
+      }
+      
+      if (!activeClient) {
+        // Se não tiver na URL, pega o primeiro cliente cadastrado por padrão para exibir no cartão
+        activeClient = clientsData[0];
+      }
+
+      if (activeClient) {
+        selectedClientId = activeClient.id;
+        loadClientToCard(activeClient);
       }
     };
 
     function checkExpiredPoints() {
       const today = new Date();
       let updated = false;
-
       clientsData.forEach(c => {
         if (c.points > 0 && c.card_expiry_date) {
           const expiry = new Date(c.card_expiry_date);
@@ -755,10 +697,7 @@
           }
         }
       });
-
-      if (updated) {
-        persistData();
-      }
+      if (updated) persistData();
     }
 
     function switchView(view) {
@@ -770,15 +709,18 @@
         cardView.style.display = 'block';
         adminView.style.display = 'none';
         container.classList.remove('admin-mode');
+        // Atualiza o cartão com o cliente selecionado atualmente
+        if (selectedClientId) {
+          const client = clientsData.find(c => c.id === selectedClientId);
+          if (client) loadClientToCard(client);
+        }
       } else if (view === 'admin') {
         cardView.style.display = 'none';
         adminView.style.display = 'block';
         container.classList.add('admin-mode');
         updateAdminTable();
         updateKPIs();
-        if (servicesChartInstance) {
-          servicesChartInstance.update();
-        }
+        if (servicesChartInstance) servicesChartInstance.update();
       }
     }
 
@@ -817,10 +759,7 @@
       if (!dateStr) return 'N/A';
       const d = new Date(dateStr);
       if (isNaN(d.getTime())) return 'N/A';
-      const day = String(d.getDate()).padStart(2, '0');
-      const month = String(d.getMonth() + 1).padStart(2, '0');
-      const year = d.getFullYear();
-      return `${day}/${month}/${year}`;
+      return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
     }
 
     function loadClientToCard(client) {
@@ -835,40 +774,33 @@
 
       if (client.points === 10) {
         banner.className = 'expiration-banner';
-        text.innerHTML = `<b>Parabéns!</b> Você completou os 10 selos do cartão! Apresente este cartão no salão para resgatar seu presente.`;
-        detailExpiry.innerText = `Cartão Completo! Prêmio disponível para resgate.`;
+        text.innerHTML = `<b>Parabéns!</b> Você completou os 10 selos do cartão!`;
+        detailExpiry.innerText = `Cartão Completo!`;
       } else if (client.points > 0 && client.card_expiry_date) {
         const formatted = formatDate(client.card_expiry_date);
         const expiryDate = new Date(client.card_expiry_date);
-        const today = new Date();
-        const diffDays = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+        const diffDays = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
 
         if (diffDays <= 0) {
           banner.className = 'expiration-banner expired';
-          text.innerHTML = `<b>Cartão Expirado!</b> O prazo limite para completar o cartão expirou. Inicie um novo ciclo no próximo atendimento.`;
-          detailExpiry.innerText = `Cartão expirado em: ${formatted}`;
-        } else if (diffDays <= 10) {
-          banner.className = 'expiration-banner warning';
-          text.innerHTML = `<b>Atenção:</b> Faltam apenas <b>${diffDays} dias</b> para seu cartão expirar! Complete seus selos até: <b>${formatted}</b>.`;
-          detailExpiry.innerText = `Cartão válido até: ${formatted} (${diffDays}d restantes para completar)`;
+          text.innerHTML = `<b>Cartão Expirado!</b>`;
+          detailExpiry.innerText = `Expirado em: ${formatted}`;
         } else {
           banner.className = 'expiration-banner';
-          text.innerHTML = `Você tem até <b>${formatted}</b> (${diffDays} dias restantes) para completar todos os 10 selos do cartão.`;
-          detailExpiry.innerText = `Cartão válido até: ${formatted}`;
+          text.innerHTML = `Você tem até <b>${formatted}</b> (${diffDays} dias) para completar os selos.`;
+          detailExpiry.innerText = `Válido até: ${formatted}`;
         }
       } else {
-        const allowedDays = client.custom_expiry_days || 60;
         banner.className = 'expiration-banner';
-        text.innerHTML = `Após ganhar o seu 1º ponto, você terá <b>${allowedDays} dias</b> para completar o cartão.`;
-        detailExpiry.innerText = `Validade: ${allowedDays} dias para completar a cartela a partir do 1º ponto.`;
+        text.innerHTML = `Após ganhar o seu 1º ponto, você terá ${client.custom_expiry_days || 60} dias para completar.`;
+        detailExpiry.innerText = `Validade: ${client.custom_expiry_days || 60} dias a partir do 1º ponto.`;
       }
     }
 
     function generateNextId() {
       if (clientsData.length === 0) return 'EB-1001';
       const ids = clientsData.map(c => parseInt(c.id.replace('EB-', ''))).filter(n => !isNaN(n));
-      const maxId = ids.length > 0 ? Math.max(...ids) : 1000;
-      return `EB-${maxId + 1}`;
+      return `EB-${(ids.length > 0 ? Math.max(...ids) : 1000) + 1}`;
     }
 
     function saveClient() {
@@ -878,7 +810,7 @@
       let id = document.getElementById('input-client-id').value;
 
       if (!name || !phone) {
-        alert('Por favor, preencha o Nome e o WhatsApp da cliente.');
+        alert('Preencha o Nome e o WhatsApp.');
         return;
       }
 
@@ -892,99 +824,24 @@
       } else {
         id = generateNextId();
         const newClient = {
-          id: id,
-          name: name,
-          phone: phone,
-          points: 0,
-          custom_expiry_days: expiryDays,
-          cycle_start_date: null,
-          card_expiry_date: null,
-          created_at: new Date().toISOString()
+          id: id, name: name, phone: phone, points: 0,
+          custom_expiry_days: expiryDays, cycle_start_date: null,
+          card_expiry_date: null, created_at: new Date().toISOString()
         };
         clientsData.push(newClient);
+        selectedClientId = id;
       }
 
       persistData();
-      alert(`Cliente ${name} salva com sucesso! (ID: ${id})`);
-      clearAdminForm();
+      alert('Salvo com sucesso!');
       updateClientsDropdown();
       updateAdminTable();
       updateKPIs();
     }
 
-    function adjustExpiryDays(deltaDays) {
-      if (!selectedClientId) {
-        alert('Selecione uma cliente primeiro.');
-        return;
-      }
-
-      const client = clientsData.find(c => c.id === selectedClientId);
-      if (client) {
-        client.custom_expiry_days = Math.max(1, (client.custom_expiry_days || 60) + deltaDays);
-        document.getElementById('input-expiry-days').value = client.custom_expiry_days;
-
-        if (client.points > 0 && client.card_expiry_date) {
-          const currentExpiry = new Date(client.card_expiry_date);
-          currentExpiry.setDate(currentExpiry.getDate() + deltaDays);
-          client.card_expiry_date = currentExpiry.toISOString();
-        }
-
-        persistData();
-        loadClientToCard(client);
-        updateAdminTable();
-        alert(`Validade do cartão da cliente ${client.name} ajustada em ${deltaDays > 0 ? '+' : ''}${deltaDays} dias.`);
-      }
-    }
-
-    function setCustomExpiryDays() {
-      if (!selectedClientId) {
-        alert('Selecione uma cliente primeiro.');
-        return;
-      }
-
-      const client = clientsData.find(c => c.id === selectedClientId);
-      const newDays = parseInt(document.getElementById('input-expiry-days').value);
-
-      if (!newDays || newDays < 1) {
-        alert('Digite uma quantidade válida de dias.');
-        return;
-      }
-
-      if (client) {
-        client.custom_expiry_days = newDays;
-        if (client.points > 0 && client.cycle_start_date) {
-          const startDate = new Date(client.cycle_start_date);
-          startDate.setDate(startDate.getDate() + newDays);
-          client.card_expiry_date = startDate.toISOString();
-        }
-
-        persistData();
-        loadClientToCard(client);
-        updateAdminTable();
-        alert(`Prazo do cartão fixado para ${newDays} dias para a cliente ${client.name}.`);
-      }
-    }
-
-    function deleteClient() {
-      if (!selectedClientId) {
-        alert('Selecione uma cliente para excluir.');
-        return;
-      }
-
-      if (confirm('Tem certeza de que deseja excluir esta cliente? Esta ação é irreversível.')) {
-        clientsData = clientsData.filter(c => c.id !== selectedClientId);
-        persistData();
-        clearAdminForm();
-        updateClientsDropdown();
-        updateAdminTable();
-        updateKPIs();
-        alert('Cliente excluída com sucesso.');
-      }
-    }
-
     function addPoints(amount) {
       if (!selectedClientId) {
-        alert('Selecione uma cliente primeiro.');
+        alert('Selecione uma cliente no painel primeiro.');
         return;
       }
 
@@ -996,26 +853,21 @@
         if (wasZero && client.points > 0) {
           const now = new Date();
           client.cycle_start_date = now.toISOString();
-          const allowedDays = client.custom_expiry_days || 60;
-          const expiry = new Date(now);
-          expiry.setDate(expiry.getDate() + allowedDays);
-          client.card_expiry_date = expiry.toISOString();
+          const exp = new Date(now);
+          exp.setDate(exp.getDate() + (client.custom_expiry_days || 60));
+          client.card_expiry_date = exp.toISOString();
         }
 
         persistData();
         loadClientToCard(client);
         updateAdminTable();
         updateKPIs();
-        alert(`${amount} ponto(s) adicionado(s) para ${client.name}. Total: ${client.points}/10. Validade do cartão: ${formatDate(client.card_expiry_date)}`);
+        alert(`${amount} ponto(s) adicionado(s) para ${client.name}! Total: ${client.points}/10`);
       }
     }
 
     function removePoints(amount) {
-      if (!selectedClientId) {
-        alert('Selecione uma cliente primeiro.');
-        return;
-      }
-
+      if (!selectedClientId) return;
       const client = clientsData.find(c => c.id === selectedClientId);
       if (client) {
         client.points = Math.max(0, client.points - amount);
@@ -1027,17 +879,13 @@
         loadClientToCard(client);
         updateAdminTable();
         updateKPIs();
-        alert(`${amount} ponto(s) removido(s) de ${client.name}. Total atual: ${client.points}/10`);
+        alert(`Ponto removido. Total atual: ${client.points}/10`);
       }
     }
 
     function resetPoints() {
-      if (!selectedClientId) {
-        alert('Selecione uma cliente primeiro.');
-        return;
-      }
-
-      if (confirm('Deseja realmente zerar os pontos desta cliente? O prazo do cartão também será reiniciado.')) {
+      if (!selectedClientId) return;
+      if (confirm('Zerar pontos desta cliente?')) {
         const client = clientsData.find(c => c.id === selectedClientId);
         if (client) {
           client.points = 0;
@@ -1047,15 +895,48 @@
           loadClientToCard(client);
           updateAdminTable();
           updateKPIs();
-          alert(`Cartão de ${client.name} zerado com sucesso.`);
         }
+      }
+    }
+
+    function adjustExpiryDays(delta) {
+      if (!selectedClientId) return;
+      const client = clientsData.find(c => c.id === selectedClientId);
+      if (client) {
+        client.custom_expiry_days = Math.max(1, (client.custom_expiry_days || 60) + delta);
+        document.getElementById('input-expiry-days').value = client.custom_expiry_days;
+        persistData();
+        loadClientToCard(client);
+      }
+    }
+
+    function setCustomExpiryDays() {
+      if (!selectedClientId) return;
+      const client = clientsData.find(c => c.id === selectedClientId);
+      const days = parseInt(document.getElementById('input-expiry-days').value);
+      if (client && days > 0) {
+        client.custom_expiry_days = days;
+        persistData();
+        loadClientToCard(client);
+        alert('Dias fixados com sucesso!');
+      }
+    }
+
+    function deleteClient() {
+      if (!selectedClientId) return;
+      if (confirm('Excluir esta cliente?')) {
+        clientsData = clientsData.filter(c => c.id !== selectedClientId);
+        persistData();
+        clearAdminForm();
+        updateClientsDropdown();
+        updateAdminTable();
+        updateKPIs();
       }
     }
 
     function onClientSelect() {
       const select = document.getElementById('select-client');
       selectedClientId = select.value;
-
       if (selectedClientId) {
         const client = clientsData.find(c => c.id === selectedClientId);
         if (client) {
@@ -1065,8 +946,6 @@
           document.getElementById('input-expiry-days').value = client.custom_expiry_days || 60;
           loadClientToCard(client);
         }
-      } else {
-        clearAdminForm();
       }
     }
 
@@ -1076,7 +955,6 @@
       document.getElementById('input-client-id').value = '';
       document.getElementById('input-client-name').value = '';
       document.getElementById('input-client-phone').value = '';
-      document.getElementById('input-expiry-days').value = 60;
     }
 
     function updateClientsDropdown() {
@@ -1088,6 +966,7 @@
         opt.innerText = `[${c.id}] ${c.name} (${c.points}/10 pts)`;
         select.appendChild(opt);
       });
+      if (selectedClientId) select.value = selectedClientId;
     }
 
     function updateAdminTable() {
@@ -1095,17 +974,14 @@
       tbody.innerHTML = '';
       clientsData.forEach(c => {
         const tr = document.createElement('tr');
-        const expiryDisplay = c.points > 0 ? formatDate(c.card_expiry_date) : 'Aguardando 1º Ponto';
         tr.innerHTML = `
           <td><b>${c.id}</b></td>
           <td>${c.name}</td>
           <td>${c.phone}</td>
           <td><span style="color: var(--gold-primary); font-weight:700;">${c.points} / 10</span></td>
-          <td>${c.custom_expiry_days || 60} dias</td>
-          <td>${expiryDisplay}</td>
-          <td>
-            <button class="btn-admin btn-gold-admin" style="padding: 4px 8px; font-size: 0.75rem;" onclick="quickSelectClient('${c.id}')">Editar</button>
-          </td>
+          <td>${c.custom_expiry_days || 60}d</td>
+          <td>${c.points > 0 ? formatDate(c.card_expiry_date) : 'Pendente'}</td>
+          <td><button class="btn-admin btn-gold-admin" style="padding: 4px 8px; font-size: 0.75rem;" onclick="quickSelectClient('${c.id}')">Editar</button></td>
         `;
         tbody.appendChild(tr);
       });
@@ -1118,100 +994,45 @@
 
     function sendCardWhatsApp() {
       if (!selectedClientId) {
-        alert('Selecione uma cliente para enviar.');
+        alert('Selecione uma cliente.');
         return;
       }
       const client = clientsData.find(c => c.id === selectedClientId);
       if (client) {
-        const cleanPhone = client.phone.replace(/\D/g, '');
-        const currentUrl = window.location.href.split('?')[0];
-        const clientCardUrl = `${currentUrl}?id=${client.id}`;
-        const expiryInfo = client.card_expiry_date ? `\nValidade para completar o cartão: ${formatDate(client.card_expiry_date)}` : '';
-        const msg = encodeURIComponent(`Olá ${client.name}! Seu Cartão Fidelidade no Espaço da Beleza está atualizado com ${client.points} de 10 pontos!${expiryInfo}\n\nAcesse seu cartão digital aqui: ${clientCardUrl}`);
-        window.open(`https://wa.me/55${cleanPhone}?text=${msg}`, '_blank');
+        const phone = client.phone.replace(/\D/g, '');
+        const url = `${window.location.href.split('?')[0]}?id=${client.id}`;
+        const msg = encodeURIComponent(`Olá ${client.name}! Seu Cartão Fidelidade no Espaço da Beleza está com ${client.points} de 10 pontos! Acesse aqui: ${url}`);
+        window.open(`https://wa.me/55${phone}?text=${msg}`, '_blank');
       }
     }
 
     function shareIndication() {
-      const msg = encodeURIComponent('Olá! Recomendo o Espaço da Beleza para você agendar seus procedimentos estéticos com alta qualidade!');
-      window.open(`https://wa.me/?text=${msg}`, '_blank');
+      window.open(`https://wa.me/?text=` + encodeURIComponent('Conheça o Espaço da Beleza!'), '_blank');
     }
 
     function exportToExcel() {
-      if (clientsData.length === 0) {
-        alert('Não há dados de clientes para exportar.');
-        return;
-      }
-
-      const wsData = clientsData.map(c => ({
-        ID: c.id,
-        Nome: c.name,
-        WhatsApp: c.phone,
-        Pontos: c.points,
-        Prazo_Validade_Dias: c.custom_expiry_days || 60,
-        Cartao_Expira_Em: formatDate(c.card_expiry_date),
-        Data_Cadastro: c.created_at || ''
-      }));
-
-      const ws = XLSX.utils.json_to_sheet(wsData);
+      if (clientsData.length === 0) return;
+      const ws = XLSX.utils.json_to_sheet(clientsData);
       const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Clientes_Fidelidade");
-      XLSX.writeFile(wb, "Espaco_da_Beleza_Clientes.xlsx");
+      XLSX.utils.book_append_sheet(wb, ws, "Clientes");
+      XLSX.writeFile(wb, "Clientes_Fidelidade.xlsx");
     }
 
     function importFromExcel(e) {
       const file = e.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(evt) {
         const data = new Uint8Array(evt.target.result);
         const workbook = XLSX.read(data, {type: 'array'});
-        const firstSheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[firstSheetName];
-        const json = XLSX.utils.sheet_to_json(worksheet);
-
+        const json = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
         if (json.length > 0) {
-          json.forEach(row => {
-            const id = row.ID || generateNextId();
-            const name = row.Nome || row.nome || 'Cliente';
-            const phone = String(row.WhatsApp || row.whatsapp || row.Telefone || '');
-            const points = parseInt(row.Pontos || row.pontos || 0);
-            const customDays = parseInt(row.Prazo_Validade_Dias || 60);
-
-            const existingIndex = clientsData.findIndex(c => c.id === id || c.phone === phone);
-            if (existingIndex !== -1) {
-              clientsData[existingIndex].points = points;
-              clientsData[existingIndex].custom_expiry_days = customDays;
-            } else {
-              const now = new Date();
-              let expiryDate = null;
-              let startDate = null;
-              if (points > 0) {
-                startDate = now.toISOString();
-                const exp = new Date(now);
-                exp.setDate(exp.getDate() + customDays);
-                expiryDate = exp.toISOString();
-              }
-
-              clientsData.push({
-                id: id,
-                name: name,
-                phone: phone,
-                points: points,
-                custom_expiry_days: customDays,
-                cycle_start_date: startDate,
-                card_expiry_date: expiryDate,
-                created_at: now.toISOString()
-              });
-            }
-          });
-
+          clientsData = json;
           persistData();
           updateClientsDropdown();
           updateAdminTable();
           updateKPIs();
-          alert('Dados importados com sucesso da planilha Excel!');
+          alert('Importado com sucesso!');
         }
       };
       reader.readAsArrayBuffer(file);
@@ -1231,7 +1052,6 @@
         data: {
           labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
           datasets: [{
-            label: 'Atendimentos',
             data: [4, 7, 5, 10, 14, 18],
             borderColor: '#d4af37',
             backgroundColor: 'rgba(212, 175, 55, 0.1)',
@@ -1241,9 +1061,7 @@
         },
         options: {
           responsive: true,
-          plugins: {
-            legend: { display: false }
-          },
+          plugins: { legend: { display: false } },
           scales: {
             y: { ticks: { color: '#a0a0ab' }, grid: { color: '#2a2a35' } },
             x: { ticks: { color: '#a0a0ab' }, grid: { color: '#2a2a35' } }
