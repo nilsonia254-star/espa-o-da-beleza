@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espaço da Beleza - Cartão Fidelidade</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
         .gold-gradient { background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%); }
         .card-bg { background: linear-gradient(145deg, #121212 0%, #1a1a1a 100%); border: 1px solid rgba(212, 175, 55, 0.3); }
@@ -16,7 +15,7 @@
 
     <main class="w-full max-w-md space-y-6">
 
-        <!-- CARTÃO DO CLIENTE (Visível para todos) -->
+        <!-- CARTÃO DO CLIENTE -->
         <div id="view-client" class="card-bg rounded-3xl p-6 card-shadow text-center relative overflow-hidden">
             <div class="absolute -right-12 -top-12 w-36 h-36 bg-amber-500/10 rounded-full blur-3xl"></div>
             <div class="absolute -left-12 -bottom-12 w-36 h-36 bg-amber-600/10 rounded-full blur-3xl"></div>
@@ -55,4 +54,170 @@
         <!-- PAINEL ADMINISTRATIVO (Oculto, abre apenas com a senha) -->
         <div id="view-admin" class="hidden space-y-4">
             <div id="admin-login-box" class="card-bg rounded-3xl p-6 text-center space-y-4 card-shadow">
-                <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-ce
+                <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto text-amber-400 text-xl font-bold border border-amber-500/20">🔒</div>
+                <h3 class="font-bold text-base text-zinc-100">Área Restrita da Dona</h3>
+                <p class="text-xs text-zinc-400">Digite a senha para gerenciar (Senha: 12345)</p>
+                <input type="password" id="admin-password" placeholder="Senha" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-center text-zinc-100 focus:outline-none focus:border-amber-500">
+                <button onclick="verifyPassword()" class="w-full gold-gradient text-black font-bold py-2.5 rounded-xl text-sm transition shadow-lg">Entrar no Painel</button>
+                <button onclick="closeAdmin()" class="w-full text-xs text-zinc-500 hover:text-zinc-300 pt-1">Voltar ao Cartão</button>
+                <p id="login-error" class="text-xs text-red-400 hidden">Senha incorreta!</p>
+            </div>
+
+            <div id="admin-panel-content" class="hidden card-bg rounded-3xl p-5 space-y-4 card-shadow">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-amber-300">Painel de Controlo</h3>
+                    <button onclick="closeAdmin()" class="text-xs text-zinc-400 hover:text-red-400 underline">Fechar Painel</button>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">Nome da Cliente</label>
+                        <input type="text" id="admin-client-name" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-100 focus:outline-none focus:border-amber-500" onchange="saveDataFromAdmin()">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-xs text-zinc-400 block mb-1">ID do Cartão</label>
+                            <input type="text" id="admin-client-id" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-100 focus:outline-none focus:border-amber-500" onchange="saveDataFromAdmin()">
+                        </div>
+                        <div>
+                            <label class="text-xs text-zinc-400 block mb-1">Pontos (0 a 10)</label>
+                            <input type="number" id="admin-client-points" min="0" max="10" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-sm text-amber-400 font-bold focus:outline-none focus:border-amber-500" onchange="setPointsDirect(this.value)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <label class="text-xs text-zinc-400 block mb-2">Adicionar Pontos Rapidamente:</label>
+                    <div class="grid grid-cols-5 gap-2">
+                        <button onclick="addPoints(1)" class="bg-zinc-900 hover:bg-amber-500 hover:text-black text-amber-400 font-bold py-2 rounded-xl text-xs border border-zinc-800">+1</button>
+                        <button onclick="addPoints(2)" class="bg-zinc-900 hover:bg-amber-500 hover:text-black text-amber-400 font-bold py-2 rounded-xl text-xs border border-zinc-800">+2</button>
+                        <button onclick="addPoints(3)" class="bg-zinc-900 hover:bg-amber-500 hover:text-black text-amber-400 font-bold py-2 rounded-xl text-xs border border-zinc-800">+3</button>
+                        <button onclick="addPoints(4)" class="bg-zinc-900 hover:bg-amber-500 hover:text-black text-amber-400 font-bold py-2 rounded-xl text-xs border border-zinc-800">+4</button>
+                        <button onclick="addPoints(5)" class="bg-zinc-900 hover:bg-amber-500 hover:text-black text-amber-400 font-bold py-2 rounded-xl text-xs border border-zinc-800">+5</button>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="resetCard()" class="w-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold py-2.5 rounded-xl text-xs hover:bg-red-500/20">Zerar Cartão</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let appData = {
+            clientName: "Maria Silva",
+            clientId: "EB-1001",
+            points: 0,
+            firstPointDate: null,
+            validityDays: 60,
+            rewardDescription: "Complete 10 pontos antes do prazo e ganhe um presente especial!"
+        };
+
+        function loadData() {
+            const saved = localStorage.getItem('espaco_beleza_fidelidade');
+            if (saved) {
+                try { appData = JSON.parse(saved); } catch (e) {}
+            }
+            syncUI();
+        }
+
+        function saveData() {
+            localStorage.setItem('espaco_beleza_fidelidade', JSON.stringify(appData));
+            syncUI();
+        }
+
+        function syncUI() {
+            document.getElementById('client-display-name').innerText = appData.clientName;
+            document.getElementById('client-display-status').innerText = `${appData.points} pontos acumulados`;
+            document.getElementById('client-display-id').innerText = appData.clientId;
+            document.getElementById('rule-days-display').innerText = appData.validityDays;
+            document.getElementById('rule-desc-display').innerText = appData.rewardDescription;
+
+            document.getElementById('admin-client-name').value = appData.clientName;
+            document.getElementById('admin-client-id').value = appData.clientId;
+            document.getElementById('admin-client-points').value = appData.points;
+
+            const grid = document.getElementById('client-stamps-grid');
+            grid.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                const active = i <= appData.points;
+                const div = document.createElement('div');
+                div.className = `aspect-square rounded-2xl flex flex-col items-center justify-center font-bold text-xs transition-all duration-300 border ${
+                    active ? 'gold-gradient text-black border-amber-300 shadow-lg shadow-amber-500/30 scale-105' : 'bg-zinc-950 text-zinc-600 border-zinc-800/80'
+                }`;
+                div.innerHTML = `<span>${i}</span>${active ? '<span class="text-[10px] mt-0.5">✨</span>' : ''}`;
+                grid.appendChild(div);
+            }
+
+            const alertText = document.getElementById('client-expiry-text');
+            if (appData.points > 0 && appData.firstPointDate) {
+                const startDate = new Date(appData.firstPointDate);
+                const expiryDate = new Date(startDate.getTime() + (appData.validityDays * 24 * 60 * 60 * 1000));
+                const diffDays = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
+                alertText.innerText = diffDays < 0 ? "O prazo de validade expirou!" : `Faltam ${diffDays} dias para o seu cartão expirar.`;
+            } else {
+                alertText.innerText = `Você tem ${appData.validityDays} dias para completar o cartão a partir do 1º ponto.`;
+            }
+        }
+
+        function openAdminLogin() {
+            document.getElementById('view-client').classList.add('hidden');
+            document.getElementById('view-admin').classList.remove('hidden');
+            document.getElementById('admin-login-box').classList.remove('hidden');
+            document.getElementById('admin-panel-content').classList.add('hidden');
+            document.getElementById('admin-password').value = "";
+            document.getElementById('login-error').classList.add('hidden');
+        }
+
+        function closeAdmin() {
+            document.getElementById('view-admin').classList.add('hidden');
+            document.getElementById('view-client').classList.remove('hidden');
+        }
+
+        function verifyPassword() {
+            const pass = document.getElementById('admin-password').value;
+            if (pass === "12345") {
+                document.getElementById('admin-login-box').classList.add('hidden');
+                document.getElementById('admin-panel-content').classList.remove('hidden');
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        function addPoints(amount) {
+            if (appData.points === 0 && amount > 0) {
+                appData.firstPointDate = new Date().toISOString();
+            }
+            appData.points = Math.min(10, appData.points + amount);
+            saveData();
+        }
+
+        function setPointsDirect(val) {
+            let p = parseInt(val) || 0;
+            appData.points = Math.max(0, Math.min(10, p));
+            if (appData.points > 0 && !appData.firstPointDate) {
+                appData.firstPointDate = new Date().toISOString();
+            }
+            saveData();
+        }
+
+        function saveDataFromAdmin() {
+            appData.clientName = document.getElementById('admin-client-name').value;
+            appData.clientId = document.getElementById('admin-client-id').value;
+            saveData();
+        }
+
+        function resetCard() {
+            if (confirm("Deseja realmente zerar o cartão?")) {
+                appData.points = 0;
+                appData.firstPointDate = null;
+                saveData();
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
