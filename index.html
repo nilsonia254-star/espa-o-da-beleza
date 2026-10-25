@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espaço da Beleza - Cartão Fidelidade</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
-        .gold-gradient {
-            background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%);
-        }
-        .card-bg {
-            background: linear-gradient(145deg, #121212 0%, #1a1a1a 100%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .card-shadow {
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.15);
-        }
+        .gold-gradient { background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%); }
+        .card-bg { background: linear-gradient(145deg, #121212 0%, #1a1a1a 100%); border: 1px solid rgba(212, 175, 55, 0.3); }
+        .card-shadow { box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.15); }
     </style>
 </head>
-<body class="bg-black text-gray-100 min-h-screen font-sans antialiased flex items-center justify-center p-4">
+<body class="bg-black text-gray-100 min-h-screen font-sans antialiased flex flex-col items-center justify-center p-4">
 
     <main class="w-full max-w-md space-y-6">
-        <div class="card-bg rounded-3xl p-6 card-shadow text-center relative overflow-hidden">
+
+        <!-- CARTÃO DO CLIENTE (Visível para todos) -->
+        <div id="view-client" class="card-bg rounded-3xl p-6 card-shadow text-center relative overflow-hidden">
             <div class="absolute -right-12 -top-12 w-36 h-36 bg-amber-500/10 rounded-full blur-3xl"></div>
             <div class="absolute -left-12 -bottom-12 w-36 h-36 bg-amber-600/10 rounded-full blur-3xl"></div>
             
-            <h2 class="text-2xl font-serif font-bold text-amber-300 tracking-wide">Espaço da Beleza</h2>
+            <!-- Dê dois cliques rápidos aqui no título para abrir o painel admin -->
+            <h2 ondblclick="openAdminLogin()" class="text-2xl font-serif font-bold text-amber-300 tracking-wide cursor-pointer select-none">Espaço da Beleza</h2>
             <p class="text-[11px] text-amber-400/70 uppercase tracking-widest mt-1">Cartão Fidelidade Digital</p>
 
             <div class="mt-6 flex justify-between items-center bg-zinc-950/80 p-3.5 rounded-2xl border border-zinc-800/80 text-left">
@@ -55,20 +51,8 @@
                 <p class="flex items-center space-x-2"><span>🎁</span> <span id="rule-desc-display" class="text-amber-300/90 font-medium">Complete 10 pontos antes do prazo e ganhe um presente especial!</span></p>
             </div>
         </div>
-    </main>
 
-    <script>
-        function loadClientData() {
-            let appData = {
-                clientName: "Maria Silva",
-                clientId: "EB-1001",
-                points: 0,
-                firstPointDate: null,
-                validityDays: 60,
-                rewardDescription: "Complete 10 pontos antes do prazo e ganhe um presente especial!"
-            };
-
-            const saved = localStorage.getItem('espaco_beleza_fidelidade');
-            if (saved) {
-                try {
-                    appData = JSON.parse(sav
+        <!-- PAINEL ADMINISTRATIVO (Oculto, abre apenas com a senha) -->
+        <div id="view-admin" class="hidden space-y-4">
+            <div id="admin-login-box" class="card-bg rounded-3xl p-6 text-center space-y-4 card-shadow">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-ce
