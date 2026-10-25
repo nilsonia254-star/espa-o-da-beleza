@@ -6,10 +6,6 @@
     <title>Espaço da Beleza - Cartão Fidelidade</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- SheetJS (Excel) -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
         .gold-gradient {
             background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%);
@@ -26,18 +22,13 @@
 <body class="bg-black text-gray-100 min-h-screen font-sans antialiased flex items-center justify-center p-4">
 
     <main class="w-full max-w-md space-y-6">
-
-        <!-- CARTÃO DO CLIENTE (Visão única e limpa para o cliente) -->
-        <div id="view-client" class="card-bg rounded-3xl p-6 card-shadow text-center relative overflow-hidden">
-            <!-- Detalhe de luz decorativo -->
+        <div class="card-bg rounded-3xl p-6 card-shadow text-center relative overflow-hidden">
             <div class="absolute -right-12 -top-12 w-36 h-36 bg-amber-500/10 rounded-full blur-3xl"></div>
             <div class="absolute -left-12 -bottom-12 w-36 h-36 bg-amber-600/10 rounded-full blur-3xl"></div>
             
-            <!-- Título com duplo clique secreto para abrir o Admin -->
-            <h2 ondblclick="openAdminLoginModal()" class="text-2xl font-serif font-bold text-amber-300 tracking-wide cursor-pointer select-none" title="Espaço da Beleza">Espaço da Beleza</h2>
+            <h2 class="text-2xl font-serif font-bold text-amber-300 tracking-wide">Espaço da Beleza</h2>
             <p class="text-[11px] text-amber-400/70 uppercase tracking-widest mt-1">Cartão Fidelidade Digital</p>
 
-            <!-- Informações da Cliente -->
             <div class="mt-6 flex justify-between items-center bg-zinc-950/80 p-3.5 rounded-2xl border border-zinc-800/80 text-left">
                 <div>
                     <p class="text-[10px] text-zinc-400 uppercase tracking-wider">Cliente</p>
@@ -50,20 +41,34 @@
                 </div>
             </div>
 
-            <!-- Alerta de Validade -->
             <div id="client-expiry-alert" class="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-3 text-xs text-amber-200/90 flex items-center space-x-2.5 text-left">
                 <span class="text-base">✨</span>
                 <span id="client-expiry-text">Você tem 60 dias para completar o cartão a partir do 1º ponto.</span>
             </div>
 
-            <!-- Grade de Selos Luxuosa (10 pontos) -->
-            <div class="grid grid-cols-5 gap-3 mt-6" id="client-stamps-grid">
-                <!-- Preenchido via JS -->
-            </div>
+            <div class="grid grid-cols-5 gap-3 mt-6" id="client-stamps-grid"></div>
 
-            <!-- Rodapé / Informações do Salão -->
             <div class="mt-8 pt-4 border-t border-zinc-800/80 text-left text-xs space-y-2 text-zinc-400">
                 <p class="flex items-center space-x-2"><span>📍</span> <span>Av. Sapopemba, 14.355 - São Mateus - SP</span></p>
                 <p class="flex items-center space-x-2"><span>📞</span> <span>Tel: (11) 2011-2058</span></p>
                 <p class="flex items-center space-x-2"><span>⏳</span> <span>Validade: <strong id="rule-days-display" class="text-zinc-200">60</strong> dias para preencher todos os 10 selos.</span></p>
-                <p class="flex items-cen
+                <p class="flex items-center space-x-2"><span>🎁</span> <span id="rule-desc-display" class="text-amber-300/90 font-medium">Complete 10 pontos antes do prazo e ganhe um presente especial!</span></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function loadClientData() {
+            let appData = {
+                clientName: "Maria Silva",
+                clientId: "EB-1001",
+                points: 0,
+                firstPointDate: null,
+                validityDays: 60,
+                rewardDescription: "Complete 10 pontos antes do prazo e ganhe um presente especial!"
+            };
+
+            const saved = localStorage.getItem('espaco_beleza_fidelidade');
+            if (saved) {
+                try {
+                    appData = JSON.parse(sav
